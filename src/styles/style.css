@@ -1,19 +1,19 @@
 :root {
-  --primary: #BB86FC;
-  --primary-variant: #3700B3;
-  --secondary: #03DAC6;
+  --primary: #bb86fc;
+  --primary-variant: #3700b3;
+  --secondary: #03dac6;
   --background: #121212;
   --surface: #121212;
-  --error: #CF6679;
-  --warning: #F39C12;
-  --on-background: #FFFFFF;
+  --error: #cf6679;
+  --warning: #f39c12;
+  --on-background: #ffffff;
   --on-background-grey: #c7c7c7;
-  --on-surface: #FFFFFF;
+  --on-surface: #ffffff;
 }
 
-[data-theme="light"] {
-  --background: #DDDDDD;
-  --suface: #FFFFFF;
+[data-theme='light'] {
+  --background: #dddddd;
+  --suface: #ffffff;
   --on-background: #333333;
   --on-background-grey: #6d6d6d;
   --on-surface: #333333;
@@ -28,7 +28,6 @@
 a {
   color: var(--on-background);
 }
-
 
 body {
   font-family: 'Inter', sans-serif;
@@ -111,7 +110,7 @@ main {
 
 .detail-page {
   margin: 0 auto;
-  margin-top: 32px; 
+  margin-top: 32px;
   width: 90%;
 }
 
@@ -122,7 +121,7 @@ main {
 }
 
 .detail-page__createdAt {
-  color: var(--on-background-grey)
+  color: var(--on-background-grey);
 }
 
 .detail-page__body {
@@ -131,7 +130,9 @@ main {
   font-size: 18px;
 }
 
-.detail-page__action, .homepage__action, .add-new-page__action {
+.detail-page__action,
+.homepage__action,
+.add-new-page__action {
   position: fixed;
   display: flex;
   gap: 16px;
@@ -186,7 +187,7 @@ main {
 
 [data-placeholder]:empty::before {
   content: attr(data-placeholder);
-  color: var(--on-background-grey)
+  color: var(--on-background-grey);
 }
 
 .search-bar input {
@@ -204,7 +205,8 @@ main {
   color: var(--on-background-grey);
 }
 
-.toggle-theme, .toggle-locale {
+.toggle-theme,
+.toggle-locale {
   background-color: transparent;
   border: 0;
   cursor: pointer;
@@ -222,16 +224,19 @@ main {
   font-size: 28px;
 }
 
-.input-login, .input-register {
+.input-login,
+.input-register {
   margin: 32px 0;
 }
 
-.input-login label, .input-register label {
+.input-login label,
+.input-register label {
   font-size: 24px;
   font-weight: lighter;
 }
 
-.input-login input, .input-register input {
+.input-login input,
+.input-register input {
   font-size: 18px;
   font-family: 'Inter', sans-serif;
   margin-top: 8px;
@@ -242,10 +247,11 @@ main {
   background-color: transparent;
   border-radius: 8px;
   border: 3px solid var(--on-background);
-  color: var(--on-background)
+  color: var(--on-background);
 }
 
-.input-login button, .input-register button {
+.input-login button,
+.input-register button {
   font-family: 'Inter', sans-serif;
   font-weight: bold;
   font-size: 24px;
@@ -274,7 +280,7 @@ main {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .detail-page__title { 
+  .detail-page__title {
     font-size: 64px;
   }
 }

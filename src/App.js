@@ -1,18 +1,76 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import AddNewPage from './pages/AddNewPage';
 import ArchivePage from './pages/ArchivePage';
 import DetailPage from './pages/DetailPage';
 import HomePage from './pages/HomePage';
+import LoginPage from './pages/LoginPage';
 import NotFoundPage from './pages/NotFoundPage';
+import RegisterPage from './pages/RegisterPage';
+import { getUserLogged, putAccessToken } from './utils/network-data';
 
 function App() {
   const home = '/';
+  const login = '/*';
+  const register = '/register';
   const archives = '/archives';
   const add = '/notes/new';
   const detail = '/notes/:id';
   const notFound = '*';
+
+  const [authedUser, setAuthedUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  const onLoginSucces = async ({ accessToken }) => {
+    putAccessToken(accessToken);
+    const { data } = await getUserLogged();
+
+    setAuthedUser(data);
+  };
+
+  const onLogout = () => {
+    setAuthedUser(null);
+
+    putAccessToken('');
+  };
+
+  useEffect(() => {
+    const fetchGetUserLogged = async () => {
+      const { data } = await getUserLogged();
+
+      setAuthedUser(data);
+      setLoading(false);
+    };
+
+    fetchGetUserLogged();
+  }, []);
+
+  if (loading) {
+    return null;
+  }
+
+  if (authedUser === null) {
+    return (
+      <div className="app-container">
+        <header>
+          <h1>
+            <Link to="/">Aplikasi Catatan</Link>
+          </h1>
+          <Navigation />
+        </header>
+        <main>
+          <Routes>
+            <Route
+              path={login}
+              element={<LoginPage loginSuccess={onLoginSucces} />}
+            />
+            <Route path={register} element={<RegisterPage />} />
+          </Routes>
+        </main>
+      </div>
+    );
+  }
 
   return (
     <div className="app-container">
@@ -20,7 +78,7 @@ function App() {
         <h1>
           <Link to="/">Aplikasi Catatan</Link>
         </h1>
-        <Navigation />
+        <Navigation logout={onLogout} name={authedUser.name} />
       </header>
       <main>
         <Routes>

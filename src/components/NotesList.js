@@ -13,6 +13,6 @@ function NotesList({ notes }) {
 }
 
 NotesList.propTypes = {
-  notes: PropTypes.arrayOf(PropTypes.object).isRequired,
+  notes: PropTypes.arrayOf(PropTypes.object),
 };
 export default NotesList;
