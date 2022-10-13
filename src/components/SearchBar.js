@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-function SearchBar({ keyword, keywordChange }) {
+const SearchBar = ({ keyword, keywordChange }) => {
   return (
     <section className="search-bar">
       <input
@@ -12,7 +12,7 @@ function SearchBar({ keyword, keywordChange }) {
       />
     </section>
   );
-}
+};
 
 SearchBar.propType = {
   keyword: PropTypes.string.isRequired,

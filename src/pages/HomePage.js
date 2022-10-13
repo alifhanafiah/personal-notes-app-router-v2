@@ -1,72 +1,54 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import HomePageAction from '../components/HomePageAction';
 import NotesList from '../components/NotesList';
 import NotesListEmpty from '../components/NotesListEmpty';
 import SearchBar from '../components/SearchBar';
-import { getActiveNotes } from '../utils/local-data';
+import { getActiveNotes } from '../utils/network-data';
 
-function HomePageWrapper() {
+const HomePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const keyword = searchParams.get('keyword');
+  const [notes, setNotes] = useState([]);
+  const [keyword, setKeyword] = useState(() => {
+    return searchParams.get('keyword') || '';
+  });
 
-  function changeSearchParams(keyword) {
+  const onKeywordChangeHandler = () => {
+    setKeyword(keyword);
+
     setSearchParams({ keyword });
-  }
-
-  return (
-    <HomePage defaultKeyword={keyword} keywordChange={changeSearchParams} />
-  );
-}
-
-class HomePage extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      notes: getActiveNotes(),
-      keyword: props.defaultKeyword || '',
-    };
-  }
-
-  onKeywordChangeHandler = (keyword) => {
-    this.setState({
-      keyword,
-    });
-
-    this.props.keywordChange(keyword);
   };
 
-  render() {
-    const filteredNotes = this.state.notes.filter((note) => {
-      return note.title
-        .toLowerCase()
-        .includes(this.state.keyword.toLowerCase());
-    });
+  useEffect(() => {
+    const fetchGetNotes = async () => {
+      try {
+        const { data } = await getActiveNotes();
+        setNotes(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-    return (
-      <section className="homepage">
-        <h2>Catatan Aktif</h2>
-        <SearchBar
-          keyword={this.state.keyword}
-          keywordChange={this.onKeywordChangeHandler}
-        />
-        {filteredNotes.length !== 0 ? (
-          <NotesList notes={filteredNotes} />
-        ) : (
-          <NotesListEmpty />
-        )}
-        <HomePageAction />
-      </section>
-    );
-  }
-}
+    fetchGetNotes();
+  }, []);
 
-HomePage.propTypes = {
-  defaultKeyword: PropTypes.string,
-  keywordChange: PropTypes.func.isRequired,
+  const filteredNotes = notes.filter((note) => {
+    return note.title.toLowerCase().includes(keyword.toLowerCase());
+  });
+
+  return (
+    <section className="homepage">
+      <h2>Catatan Aktif</h2>
+      <SearchBar keyword={keyword} keywordChange={onKeywordChangeHandler} />
+      {filteredNotes.length !== 0 ? (
+        <NotesList notes={filteredNotes} />
+      ) : (
+        <NotesListEmpty />
+      )}
+      <HomePageAction />
+    </section>
+  );
 };
 
-export default HomePageWrapper;
+export default HomePage;

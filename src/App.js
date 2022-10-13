@@ -57,7 +57,7 @@ function App() {
           <h1>
             <Link to="/">Aplikasi Catatan</Link>
           </h1>
-          <Navigation />
+          {/* <Navigation /> */}
         </header>
         <main>
           <Routes>

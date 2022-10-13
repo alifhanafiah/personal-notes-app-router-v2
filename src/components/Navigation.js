@@ -3,7 +3,7 @@ import React from 'react';
 import { HiOutlineLogout } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 
-function Navigation({ logout, name }) {
+const Navigation = ({ logout, name }) => {
   return (
     <nav className="navigation">
       <ul>
@@ -18,7 +18,7 @@ function Navigation({ logout, name }) {
       </ul>
     </nav>
   );
-}
+};
 
 const btnStyle = {
   backgroundColor: 'transparent',
@@ -27,6 +27,8 @@ const btnStyle = {
   fontSize: '24px',
   margin: '0 8px',
   cursor: 'pointer',
+  display: 'flex',
+  alignItems: 'center',
 };
 
 Navigation.propTypes = {

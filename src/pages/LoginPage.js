@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import LoginInput from '../components/LoginInput';
 import { login } from '../utils/network-data';
 
-function LoginPage({ loginSuccess }) {
+const LoginPage = ({ loginSuccess }) => {
   const onLogin = async ({ email, password }) => {
     const { error, data } = await login({ email, password });
 
@@ -22,7 +22,7 @@ function LoginPage({ loginSuccess }) {
       </p>
     </section>
   );
-}
+};
 
 LoginPage.propTypes = {
   loginSuccess: PropTypes.func.isRequired,

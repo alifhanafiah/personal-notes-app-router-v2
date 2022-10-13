@@ -4,14 +4,14 @@ import { BiArchiveIn, BiArchiveOut } from 'react-icons/bi';
 import { MdOutlineDeleteOutline } from 'react-icons/md';
 import Swal from 'sweetalert2';
 
-function DetailPageAction({
+const DetailPageAction = ({
   id,
   title,
   archived,
   archiveNote,
   deleteNote,
   unArchiveNote,
-}) {
+}) => {
   const onArchiveHandler = () => {
     archiveNote(id);
   };
@@ -78,15 +78,15 @@ function DetailPageAction({
       </button>
     </div>
   );
-}
+};
 
 DetailPageAction.propTypes = {
-  id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  archived: PropTypes.bool.isRequired,
-  archiveNote: PropTypes.func.isRequired,
-  unArchiveNote: PropTypes.func.isRequired,
-  deleteNote: PropTypes.func.isRequired,
+  id: PropTypes.string,
+  title: PropTypes.string,
+  archived: PropTypes.bool,
+  archiveNote: PropTypes.func,
+  unArchiveNote: PropTypes.func,
+  deleteNote: PropTypes.func,
 };
 
 export default DetailPageAction;

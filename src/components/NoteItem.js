@@ -4,7 +4,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { showFormattedDate } from '../utils';
 
-function NoteItem({ id, title, createdAt, body }) {
+const NoteItem = ({ id, title, createdAt, body }) => {
   return (
     <article className="note-item">
       <h3 className="note-item__title">
@@ -14,7 +14,7 @@ function NoteItem({ id, title, createdAt, body }) {
       <p className="note-item__body">{parser(body)}</p>
     </article>
   );
-}
+};
 
 NoteItem.propTypes = {
   id: PropTypes.string.isRequired,

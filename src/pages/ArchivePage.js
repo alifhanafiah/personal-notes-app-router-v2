@@ -3,12 +3,12 @@ import { useSearchParams } from 'react-router-dom';
 import NotesList from '../components/NotesList';
 import NotesListEmpty from '../components/NotesListEmpty';
 import SearchBar from '../components/SearchBar';
-import { getArchivedNotes } from '../utils/local-data';
+import { getArchivedNotes } from '../utils/network-data';
 
-function ArchivePage() {
+const ArchivePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const [notes, setNotes] = useState(getArchivedNotes());
+  const [notes, setNotes] = useState([]);
   const [keyword, setKeyword] = useState(() => {
     return searchParams.get('keyword');
   });
@@ -18,12 +18,18 @@ function ArchivePage() {
     setSearchParams({ keyword });
   };
 
-  // useEffect(() => {
-  //   const data = getArchivedNotes();
-  //   setNotes(...data);
-  //   console.log(data);
-  //   console.log(notes);
-  // }, []);
+  useEffect(() => {
+    const fetchGetNotes = async () => {
+      try {
+        const { data } = await getArchivedNotes();
+        setNotes(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchGetNotes();
+  }, []);
 
   const filteredNotes = notes.filter((note) => {
     return note.title.toLowerCase().includes(keyword.toLowerCase());
@@ -40,6 +46,6 @@ function ArchivePage() {
       )}
     </section>
   );
-}
+};
 
 export default ArchivePage;

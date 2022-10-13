@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import RegisterInput from '../components/RegisterInput';
 import { register } from '../utils/network-data';
 
-function RegisterPage() {
+const RegisterPage = () => {
   const navigate = useNavigate();
 
   async function onRegisterHandler(user) {
@@ -22,6 +22,6 @@ function RegisterPage() {
       </p>
     </section>
   );
-}
+};
 
 export default RegisterPage;

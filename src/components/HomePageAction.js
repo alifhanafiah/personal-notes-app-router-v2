@@ -2,7 +2,7 @@ import React from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 
-function HomePageAction() {
+const HomePageAction = () => {
   return (
     <div className="homepage__action">
       <Link to="/notes/new">
@@ -12,6 +12,6 @@ function HomePageAction() {
       </Link>
     </div>
   );
-}
+};
 
 export default HomePageAction;
