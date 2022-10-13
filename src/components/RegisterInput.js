@@ -1,28 +1,13 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React from 'react';
 import Swal from 'sweetalert2';
+import useInput from '../hooks/useInput';
 
 const RegisterInput = ({ register }) => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-
-  const onNameChange = (e) => {
-    setName(e.target.value);
-  };
-
-  const onEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const onPasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const onConfirmPasswordChange = (e) => {
-    setConfirmPassword(e.target.value);
-  };
+  const [name, onNameChange] = useInput('');
+  const [email, onEmailChange] = useInput('');
+  const [password, onPasswordChange] = useInput('');
+  const [confirmPassword, onConfirmPasswordChange] = useInput('');
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
