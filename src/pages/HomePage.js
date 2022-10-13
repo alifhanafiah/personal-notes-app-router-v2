@@ -16,7 +16,6 @@ const HomePage = () => {
 
   const onKeywordChangeHandler = () => {
     setKeyword(keyword);
-
     setSearchParams({ keyword });
   };
 

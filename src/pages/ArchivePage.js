@@ -10,7 +10,7 @@ const ArchivePage = () => {
 
   const [notes, setNotes] = useState([]);
   const [keyword, setKeyword] = useState(() => {
-    return searchParams.get('keyword');
+    return searchParams.get('keyword') || '';
   });
 
   const onKeywordChangeHandler = () => {

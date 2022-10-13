@@ -20,16 +20,18 @@ const LoginInput = ({ login }) => {
   };
 
   return (
-    <form onSubmit={onSubmitHandler} className="login-input">
+    <form onSubmit={onSubmitHandler} className="input-login">
+      <label htmlFor="email">Email</label>
       <input
+        id="email"
         type="email"
-        placeholder="Email"
         value={email}
         onChange={onEmailChangeHandler}
       />
+
+      <label htmlFor="password">Password</label>
       <input
         type="password"
-        placeholder="Password"
         value={password}
         onChange={onPasswordChangeHandler}
       />
