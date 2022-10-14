@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import LocaleContext from '../contexts/LocaleContext';
 
 const Navigation = () => {
+  const { locale } = useContext(LocaleContext);
+
   return (
     <nav className="navigation">
       <ul>
         <li>
-          <Link to="/archives">Terarsip</Link>
+          <Link to="/archives">
+            {locale === 'id' ? 'Terarsip' : 'Archived'}
+          </Link>
         </li>
       </ul>
     </nav>

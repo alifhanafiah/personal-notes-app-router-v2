@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import NotesList from '../components/NotesList';
 import NotesListEmpty from '../components/NotesListEmpty';
 import SearchBar from '../components/SearchBar';
+import LocaleContext from '../contexts/LocaleContext';
 import { getArchivedNotes } from '../utils/network-data';
 
 const ArchivePage = () => {
+  const { locale } = useContext(LocaleContext);
+
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [notes, setNotes] = useState([]);
@@ -37,7 +40,7 @@ const ArchivePage = () => {
 
   return (
     <section className="archives-page">
-      <h2>Catatan Arsip</h2>
+      <h2>{locale === 'id' ? 'Catatan Arsip' : 'Archived Note'}</h2>
       <SearchBar keyword={keyword} keywordChange={onKeywordChangeHandler} />
       {filteredNotes.length !== 0 ? (
         <NotesList notes={filteredNotes} />

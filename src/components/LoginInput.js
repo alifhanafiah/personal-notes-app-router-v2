@@ -28,7 +28,7 @@ const LoginInput = ({ login }) => {
         value={password}
         onChange={onPasswordChangeHandler}
       />
-      <button>Masuk</button>
+      <button>Login</button>
     </form>
   );
 };
