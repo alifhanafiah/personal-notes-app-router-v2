@@ -20,7 +20,7 @@ const HomePage = () => {
     return searchParams.get('keyword') || '';
   });
 
-  const onKeywordChangeHandler = () => {
+  const onKeywordChangeHandler = (keyword) => {
     setKeyword(keyword);
     setSearchParams({ keyword });
   };
