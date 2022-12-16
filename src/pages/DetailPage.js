@@ -6,7 +6,7 @@ import {
   archiveNote,
   deleteNote,
   getNote,
-  unarchiveNote,
+  unarchiveNote
 } from '../utils/network-data';
 import NotFoundPage from './NotFoundPage';
 
